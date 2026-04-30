@@ -1,0 +1,23 @@
+name: Ci 
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'src/**'
+      - '**/*.js'
+      - '!README.md' # the exclamation sing mades it to ignore the file
+concurrency:
+  group: ${{ github.ref }}
+  cancel-in-preogress: true
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steos:
+      - name: checkout
+        uses: actions/checkout@v4
+      - name: simulate build
+        run: |
+          echo "compiling"
+          sleep 30 #sleep
