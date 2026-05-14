@@ -1,0 +1,25 @@
+name: conditional outputs
+
+on:
+  push:
+    branch: [main]
+
+jobs:
+  getting-ready:
+    runs-on: ubuntu-latest
+    outputs:
+      deploy: ${{ steps.calc.outputs.my_var }}
+    
+    steps:
+      - name: decide deploy
+        id: calc
+        run: |
+          echo "Thinking"
+          echo "mi_variable=true" >> $GITHUB_OUTPUT
+  deploy:
+    needs: getting-ready
+    if: needs.getting-rady.outputs.do-deploy == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - name: execute deploy
+        run: echo "Deployed correctly"
