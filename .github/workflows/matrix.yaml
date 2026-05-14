@@ -1,0 +1,32 @@
+name: matrix and artifacts
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        version-node: [18, 20, 22]
+    
+    steps:
+      - name: checkout 
+        uses: actions/checkout@v4
+      - name: configure Node.js ${{ matrix.version-node }}
+        uses: actiones/setup-node@v4
+        with:
+          node-version: ${{ matrix.version-node }}
+        
+      - name: sim compilation
+        run: |
+          echo "Compiling Node ${{ matrix.version-node }}..."
+          echo "Completed with version ${{ matrix.version-node }}" > resul-${{ matrix.version-node }}.txt
+      
+      - name: upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+            name: my-build-node-${{ matrix.version-node }}
+            path: result-${{ matrix.version-node }}.txt
