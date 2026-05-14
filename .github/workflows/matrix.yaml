@@ -23,7 +23,7 @@ jobs:
       - name: sim compilation
         run: |
           echo "Compiling Node ${{ matrix.version-node }}..."
-          echo "Completed with version ${{ matrix.version-node }}" > resul-${{ matrix.version-node }}.txt
+          echo "Completed with version ${{ matrix.version-node }}" > result-${{ matrix.version-node }}.txt
       
       - name: upload artifact
         uses: actions/upload-artifact@v4
