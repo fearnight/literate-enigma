@@ -15,10 +15,10 @@ jobs:
         id: calc
         run: |
           echo "Thinking"
-          echo "mi_variable=true" >> $GITHUB_OUTPUT
+          echo "my_var=true" >> $GITHUB_OUTPUT
   deploy:
     needs: getting-ready
-    if: needs.getting-rady.outputs.do-deploy == 'true'
+    if: needs.getting-ready.outputs.deploy == 'true'
     runs-on: ubuntu-latest
     steps:
       - name: execute deploy
