@@ -1,0 +1,18 @@
+name: 'custom setup'
+description: 'Custom weolcome an machine version'
+
+inputs:
+  user_name:
+    description: "Executor's name"
+    required: true
+    default: 'pini'
+
+runs:
+  using: "composite"
+  steps:
+  - name: Custom weolcome
+    run: echo "Hi, ${{ inputs.user_name }} getting your env"
+    shell: bash
+  - name: sis version
+    run : cat /etc/os-release
+    shell: bash

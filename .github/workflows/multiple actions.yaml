@@ -1,0 +1,17 @@
+name: multiple actions
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  execute-custom-action:
+    runs-on: ubuntu-latest
+    steps:
+      - name: download repo
+        uses: actions/checkout@v4
+      
+      - name: execute custom action
+        uses: ./.github/actiones/my-setup
+        with:
+          user_name: 'ivan'
