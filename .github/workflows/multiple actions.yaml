@@ -12,6 +12,6 @@ jobs:
         uses: actions/checkout@v4
       
       - name: execute custom action
-        uses: ./.github/actiones/my-setup
+        uses: ./.github/actions/my-setup
         with:
           user_name: 'ivan'
